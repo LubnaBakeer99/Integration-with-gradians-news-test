@@ -20,6 +20,9 @@ class ArticleResource extends JsonResource
             'content' => $this->content,
             'author_name' =>($this->author) ? $this->author->name :null,
             'category_name' => $this->category->name,
+            'category_id'=>$this->category_id,
+            'article_url' =>$this->url,
+            'publication_date' =>$this->publication_date,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

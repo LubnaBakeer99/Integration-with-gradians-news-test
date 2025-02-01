@@ -3,15 +3,14 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\{AuthenticationController,  GuardianApiController ,FavoritesController};
+use App\Http\Controllers\{AuthenticationController,  GuardianApiController ,FavoritesController ,ArticleController};
  
 
 
-// Get latest articles
-Route::get('/latest', [GuardianApiController::class, 'latestArticles']);
+// Get latest articles with filter
+Route::get('/articles', [ArticleController::class, 'filterArtilces']);
 
-// Search articles
-Route::post('/search', [GuardianApiController::class, 'search']);
+ 
 
 
 Route::get('/user', function (Request $request) {
@@ -22,19 +21,19 @@ Route::get('/user', function (Request $request) {
 Route::prefix('user')
 ->middleware(['auth:api' ])
  ->group(function () { Route::controller(AuthenticationController::class)->group(function () {
-              Route::get('/register', 'register')->withoutMiddleware(['auth:api']);
-              Route::get('/login', 'login')->withoutMiddleware(['auth:api']);
+              Route::post('/register', 'register')->withoutMiddleware(['auth:api']);
+              Route::post('/login', 'login')->withoutMiddleware(['auth:api']);
 
 
     });
 });
 
 
-Route::post('/favourite/mark/{modelType}/{id}', [FavoritesController::class, 'favoriteOrUnFavourite'])
+Route::post('/user/favourite/mark/{modelType}/{id}', [FavoritesController::class, 'favoriteOrUnFavourite'])
     ->where('modelType', 'authors|categories')
     ->middleware(['auth:api']);
 
-    Route::post('/user/favourite-articles', [FavoritesController::class, 'userFavouritesArticles'])->middleware(['auth:api']);
+Route::get('/user/favourite-articles', [FavoritesController::class, 'userFavouritesArticles'])->middleware(['auth:api']);
 
 
     

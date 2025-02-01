@@ -68,7 +68,7 @@ class GuardianApiController extends Controller
             ],
             $articleData
         );
-        dd( $articleRecord);
+  
  
     }
 

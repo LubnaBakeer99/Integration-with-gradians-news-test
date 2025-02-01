@@ -17,7 +17,7 @@ services:
     volumes:
       - './project:/app'
     networks:
-      - network1
+      - test_network
     extra_hosts:
       - "host.docker.internal:host-gateway"
 networks:

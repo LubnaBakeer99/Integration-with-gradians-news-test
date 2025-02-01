@@ -40,11 +40,7 @@ class ResponseHelper
         return response()->json(['status' => 0, 'message' => $message], 401);
     }
 
-    public static function invalidData($message = "Invalid Data")
-    {
-        return response()->json(['status' => 0, 'message' => $message], 401);
-    }
-
+   
     public static function operationFail($message = "operation Fail")
     {
         return response()->json(['status' => 0, 'message' => $message], 500);
